@@ -1,0 +1,15 @@
+{
+  "events": "permanent",
+  "checkpoints": "permanent",
+  "perception_t0_raw": {
+    "max_age_days": 30,
+    "eviction": "oldest_first"
+  },
+  "artifacts_cas": {
+    "referenced_by_event": "permanent",
+    "unreferenced": {
+      "max_age_days": 90
+    }
+  },
+  "state_caches": "regeneratable_on_eviction"
+}

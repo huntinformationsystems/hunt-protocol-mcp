@@ -1,0 +1,25 @@
+{
+  "authorities": [
+    {
+      "role": "root",
+      "key_id": "key_root_001",
+      "scope": "all"
+    }
+  ],
+  "merge_policies": {
+    "events": "union_by_event_id",
+    "beliefs": "evidence_union_then_reduce",
+    "policies": "authority_signed_update"
+  },
+  "lease_model": {
+    "default_duration_seconds": 300,
+    "fencing": true
+  },
+  "replication_factor": 2,
+  "degradation_ladder": [
+    "designated_human",
+    "quorum_peers",
+    "archive_peer",
+    "local_emergency"
+  ]
+}

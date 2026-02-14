@@ -1,0 +1,27 @@
+{
+  "action_classes": {
+    "L0": {
+      "description": "data-only/reversible",
+      "offline_allowed": true,
+      "approval": "local_reducer"
+    },
+    "L1": {
+      "description": "low-kinetic",
+      "offline_allowed": true,
+      "approval": "local_reducer+policy",
+      "review_on_sync": true
+    },
+    "L2": {
+      "description": "high-kinetic",
+      "offline_allowed": "within_lease",
+      "approval": "multi_sensor+signed_policy"
+    },
+    "L3": {
+      "description": "irreversible/human-space",
+      "offline_allowed": false,
+      "approval": "remote_signature_or_mfa"
+    }
+  },
+  "merge_ratchet": "most_restrictive_wins",
+  "loosen_requires": "signed_policy_update_by_top_authority"
+}

@@ -1,0 +1,9 @@
+{
+  "uid": "01956a2b-3c4d-7000-8000-000000000001",
+  "birth_timestamp": "2026-02-12T20:00:00Z",
+  "root_key_id": "key_root_001",
+  "governance_model": "policies/sync_contract.json",
+  "initial_ontology_versions": {
+    "perception": "perception_ontology_v1.json"
+  }
+}

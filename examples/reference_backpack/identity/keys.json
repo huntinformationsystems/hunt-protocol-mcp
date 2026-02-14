@@ -1,0 +1,15 @@
+{
+  "keys": [
+    {
+      "key_id": "key_root_001",
+      "algorithm": "Ed25519",
+      "public_key_b64": "PLACEHOLDER",
+      "roles": [
+        "root",
+        "attestation"
+      ],
+      "status": "active"
+    }
+  ],
+  "revocations": []
+}

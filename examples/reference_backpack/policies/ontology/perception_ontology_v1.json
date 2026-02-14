@@ -1,0 +1,9 @@
+{
+  "version": "v1",
+  "object_classes": [
+    "door",
+    "mug",
+    "person",
+    "container"
+  ]
+}
