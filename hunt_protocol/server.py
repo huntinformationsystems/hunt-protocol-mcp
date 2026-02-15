@@ -573,7 +573,7 @@ def _find_belief_namespace(state: dict, bkey: str) -> str:
 def main():
     parser = argparse.ArgumentParser(description="Hunt Protocol MCP Server")
     parser.add_argument('--version', action='version', version=f'%(prog)s {__version__}')
-    # you can change the other arguments buy adding another parser.add_argument() here if needed :)
+    # you can change the other arguments by adding another parser.add_argument() here if needed :)
     args = parser.parse_args()
     
     mcp.run()
