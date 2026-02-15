@@ -15,6 +15,8 @@ import base64
 import datetime
 import json
 import os
+import argparse
+from . import __version__ 
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
@@ -569,6 +571,11 @@ def _find_belief_namespace(state: dict, bkey: str) -> str:
 # ---------------------------------------------------------------------------
 
 def main():
+    parser = argparse.ArgumentParser(description="Hunt Protocol MCP Server")
+    parser.add_argument('--version', action='version', version=f'%(prog)s {__version__}')
+    # you can change the other arguments buy adding another parser.add_argument() here if needed :)
+    args = parser.parse_args()
+    
     mcp.run()
 
 
