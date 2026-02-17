@@ -6,7 +6,7 @@ This document explains the design decisions behind the Docker support for Provar
 
 ## Key Decisions
 
-- No user vault content is baked into the image. Only the non-sensitive example vault at `examples/reference_backpack` is included read-only; production vaults must be mounted at runtime.
+- No vault content is baked into the image — not even the example vault. All vaults must be mounted at runtime via Docker volumes.
 - Signing keys are injected only via environment variables (`HUNT_SIGNING_KEY_B64`).
 - Use `python:3.11-slim` to keep the image minimal and reduce attack surface.
 - No ports are exposed; MCP uses stdin/stdout for communication.
