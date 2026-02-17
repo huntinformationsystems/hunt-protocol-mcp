@@ -6,7 +6,7 @@ services:
     image: provara-mcp:latest
     container_name: provara-mcp
     volumes:
-      - ${HUNT_VAULT_PATH:-./examples/reference_backpack}:/vault:rw
+      - ${HUNT_VAULT_PATH:-./examples/reference_backpack}:/vault:ro
     environment:
       - HUNT_VAULT_PATH=/vault
       - HUNT_SIGNING_KEY_B64=${HUNT_SIGNING_KEY_B64:-}
