@@ -155,7 +155,7 @@ claude mcp add provara \
 
 ### Quick Start with Docker
 
-Run Provara MCP in a container using the included reference vault (read-only):
+Run Provara MCP in a container using the included reference vault (mounted read-only by default):
 
 ```bash
 docker-compose up
