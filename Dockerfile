@@ -6,7 +6,6 @@ WORKDIR /app
 COPY pyproject.toml ./
 COPY README.md ./
 COPY hunt_protocol/ ./hunt_protocol/
-COPY examples/ ./examples/
 
 # Install the package in non-editable mode for reproducible runtime images
 RUN pip install --no-cache-dir .
