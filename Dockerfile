@@ -1,16 +1,15 @@
-FROM python:3.11-slim
+FROM python:3.11.8-slim
 
 WORKDIR /app
 
 # Copy minimal files needed to install the package
 COPY pyproject.toml ./
 COPY README.md ./
-COPY server.py ./
 COPY hunt_protocol/ ./hunt_protocol/
 COPY examples/ ./examples/
 
-# Install the package in editable mode so the image reflects source
-RUN pip install --no-cache-dir -e .
+# Install the package in non-editable mode for reproducible runtime images
+RUN pip install --no-cache-dir .
 
 # Mount point for vault (always provided by the host)
 RUN mkdir -p /vault
