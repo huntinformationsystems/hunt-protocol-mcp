@@ -31,6 +31,9 @@ Dockerfile
 docker-compose.yml
 .dockerignore
 
+# Vault / examples (must be mounted at runtime, never baked in)
+examples/
+
 # Docs
 *.md
 !README.md
