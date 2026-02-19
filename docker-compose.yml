@@ -1,0 +1,15 @@
+version: "3.8"
+
+services:
+  provara-mcp:
+    build: .
+    image: provara-mcp:latest
+    container_name: provara-mcp
+    volumes:
+      - ${HUNT_VAULT_PATH:-./examples/reference_backpack}:/vault:ro
+    environment:
+      - HUNT_VAULT_PATH=/vault
+      - HUNT_SIGNING_KEY_B64=${HUNT_SIGNING_KEY_B64:-}
+    stdin_open: true
+    tty: true
+    restart: unless-stopped

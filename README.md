@@ -50,30 +50,30 @@ HUNT_VAULT_PATH=/path/to/vault \
 
 ### Read Tools (no key required)
 
-| Tool | Description |
-|------|-------------|
-| `vault_status` | Vault health: event count, state hash, merkle root, key info, compliance summary |
-| `list_events` | List events with filters (type, actor, namespace, limit, offset) |
-| `get_event` | Full event by event_id |
-| `get_state` | Current reduced state (all namespaces or filtered) |
-| `get_beliefs` | Query beliefs by namespace, optional key pattern (subject:predicate) |
-| `get_evidence` | Evidence trail for a specific belief key |
-| `verify_vault` | Run integrity + compliance checks, return pass/fail details |
-| `search_events` | Search events by payload content (subject, predicate, value substring) |
+| Tool            | Description                                                                      |
+| --------------- | -------------------------------------------------------------------------------- |
+| `vault_status`  | Vault health: event count, state hash, merkle root, key info, compliance summary |
+| `list_events`   | List events with filters (type, actor, namespace, limit, offset)                 |
+| `get_event`     | Full event by event_id                                                           |
+| `get_state`     | Current reduced state (all namespaces or filtered)                               |
+| `get_beliefs`   | Query beliefs by namespace, optional key pattern (subject:predicate)             |
+| `get_evidence`  | Evidence trail for a specific belief key                                         |
+| `verify_vault`  | Run integrity + compliance checks, return pass/fail details                      |
+| `search_events` | Search events by payload content (subject, predicate, value substring)           |
 
 ### Write Tools (require `HUNT_SIGNING_KEY_B64`)
 
-| Tool | Description |
-|------|-------------|
+| Tool                 | Description                                            |
+| -------------------- | ------------------------------------------------------ |
 | `append_observation` | Add observation: subject, predicate, value, confidence |
-| `append_assertion` | Add assertion: subject, predicate, value, confidence |
+| `append_assertion`   | Add assertion: subject, predicate, value, confidence   |
 
 ## Environment Variables
 
-| Variable | Required | Description |
-|----------|----------|-------------|
-| `HUNT_VAULT_PATH` | No | Path to vault directory (default: `./examples/reference_backpack`) |
-| `HUNT_SIGNING_KEY_B64` | For writes | Base64-encoded Ed25519 private key |
+| Variable               | Required   | Description                                                        |
+| ---------------------- | ---------- | ------------------------------------------------------------------ |
+| `HUNT_VAULT_PATH`      | No         | Path to vault directory (default: `./examples/reference_backpack`) |
+| `HUNT_SIGNING_KEY_B64` | For writes | Base64-encoded Ed25519 private key                                 |
 
 ## Why Provara?
 
@@ -103,16 +103,16 @@ The MCP server loads events, runs a deterministic reducer to compute state acros
 
 The server wraps the Provara L0 protocol modules:
 
-| Module | Responsibility |
-|--------|---------------|
-| `canonical_json` | RFC 8785 deterministic JSON serialization |
-| `integrity` | SHA-256 file hashing, Merkle trees, path safety |
-| `signing` | Ed25519 keypair management, event/manifest signing |
-| `reducer` | Deterministic four-namespace state reducer |
-| `manifest` | Manifest generation and verification |
-| `sync` | Event log I/O, causal chain verification, fork detection |
-| `bootstrap` | Vault creation from scratch |
-| `rekey` | Key rotation protocol |
+| Module           | Responsibility                                           |
+| ---------------- | -------------------------------------------------------- |
+| `canonical_json` | RFC 8785 deterministic JSON serialization                |
+| `integrity`      | SHA-256 file hashing, Merkle trees, path safety          |
+| `signing`        | Ed25519 keypair management, event/manifest signing       |
+| `reducer`        | Deterministic four-namespace state reducer               |
+| `manifest`       | Manifest generation and verification                     |
+| `sync`           | Event log I/O, causal chain verification, fork detection |
+| `bootstrap`      | Vault creation from scratch                              |
+| `rekey`          | Key rotation protocol                                    |
 
 Seven modules. 110 tests. One external dependency. The protocol spec is frozen at L0.
 
@@ -150,6 +150,32 @@ claude mcp add provara \
   -e HUNT_SIGNING_KEY_B64="your-key-here" \
   -- hunt-mcp
 ```
+
+## Docker Support
+
+### Quick Start with Docker
+
+Run Provara MCP in a container using the included reference vault (mounted read-only by default):
+
+```bash
+docker-compose up
+```
+
+With a custom vault directory mounted from the host:
+
+```bash
+HUNT_VAULT_PATH=/path/to/vault docker-compose up
+```
+
+To enable write operations inject your signing key at runtime (never bake keys into the image):
+
+```bash
+HUNT_VAULT_PATH=/path/to/vault \
+  HUNT_SIGNING_KEY_B64="your-base64-ed25519-private-key" \
+  docker-compose up
+```
+
+See DOCKER.md for design rationale, security considerations and verification steps.
 
 ## Links
 
